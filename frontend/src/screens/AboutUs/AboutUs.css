@@ -1,0 +1,30 @@
+.about {
+  padding-top: 5%;
+  margin-top: 2%;
+}
+
+.items {
+  display: flex;
+  justify-content: space-evenly;
+}
+.item {
+  text-align: center;
+}
+h1 {
+  text-align: center;
+}
+h3 {
+  padding:2% 0%;
+  text-align: center;
+}
+h4 {
+  padding:2% 0%;
+  text-align: center;
+}
+h5{
+  padding:2% 0%;
+  text-align: center;
+}
+.icons{
+    padding: 10% 10%;
+}

@@ -1,32 +1,31 @@
-const express = require('express');
-const dotenv = require('dotenv');
+const express = require("express");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const userRouter = require("./routes/userRouters");
+const studentRouter = require("./routes/studentRouters");
+const transcriptRouter = require('./routes/transcriptRouters.js')
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 dotenv.config();
 
 //creating app
 const app = express();
 
-//importing temp student data
-const students = require('./student')
+//Importing DB connection function
+connectDB();
 
+//setting up middleware
+app.use(express.json());
 
 //creating routes
+app.use("/users", userRouter);
+app.use("/student", studentRouter);
+app.use("/transcript", transcriptRouter);
 
-app.get('/',(req,res)=>{
-    res.send({msg:"api is running"})
-})
+app.use(notFound);
+app.use(errorHandler);
 
-app.get('/student/:id',(req,res)=>{
-    const id = req.params.id
-    const student = students.find((n)=> n._id == req.params.id)
-    res.json(student)
-})
+const PORT = process.env.PORT || 5001;
 
-
-const PORT = process.env.PORT || 3001
-
-app.listen(PORT,()=>{
-    console.log(`Server started running on PORT ${PORT}`)
-})
-
-
-
+app.listen(PORT, () => {
+  console.log(`Server started running on PORT ${PORT}`);
+});
