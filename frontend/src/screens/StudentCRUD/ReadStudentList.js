@@ -54,7 +54,6 @@ const ReadStudentList = () => {
     }
   };
 
-
   return (
     <MainScreen title="All Student Data">
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
@@ -118,13 +117,7 @@ const ReadStudentList = () => {
             return (
               <tr>
                 <td>{index}</td>
-                <td>
-                  <Link
-                    to={`/viewstudentcourse/${item.prn}`}
-                  >
-                    {item.prn}
-                  </Link>
-                </td>
+                <td>{item.prn}</td>
                 <td>{item.fname}</td>
                 <td>{item.lname}</td>
                 <td>{item.branch}</td>

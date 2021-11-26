@@ -10,6 +10,7 @@ const Order = () => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [prn, setPrn] = useState("");
+  const [year, setYear] = useState("");
   const [cpi, setCpi] = useState("");
   const [dob, setDob] = useState("");
   const [error, setError] = useState(false);
@@ -20,42 +21,47 @@ const Order = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    try {
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${userData.token}`,
-        },
-      };
-      setLoading(true);
+    if (userInfo) {
+      try {
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${userData.token}`,
+          },
+        };
+        setLoading(true);
 
-      const { data } = await axios.post(
-        "/transcript/ordertranscript",
-        {
-          fname,
-          lname,
-          prn,
-          dob,
-          cpi,
-        },
-        config
-      );
+        const { data } = await axios.post(
+          "/transcript/ordertranscript",
+          {
+            fname,
+            lname,
+            prn,
+            dob,
+            cpi,
+            year
+          },
+          config
+        );
 
-      if (data) {
-        setSuccess("Order Initiated");
+        if (data) {
+          setSuccess("Order Initiated");
+        }
+        setLoading(false);
+        setTimeout(() => {
+          setSuccess(false);
+          setError(false);
+        }, 3000);
+      } catch (error) {
+        setError(error.response.data.message);
+        setLoading(false);
+        setTimeout(() => {
+          setSuccess(false);
+          setError(false);
+        }, 3000);
       }
-      setLoading(false);
-      setTimeout(() => {
-        setSuccess(false);
-        setError(false);
-      }, 3000);
-    } catch (error) {
-      setError(error.response.data.message);
-      setLoading(false);
-      setTimeout(() => {
-        setSuccess(false);
-        setError(false);
-      }, 3000);
+    } else {
+      setError("Login First");
     }
   };
 
@@ -100,7 +106,22 @@ const Order = () => {
             }}
           />
         </Form.Group>
-
+        <Form.Group>
+          <Form.Label>Select Year </Form.Label>
+          <Form.Select
+            aria-label="Default select example"
+            onChange={(e) => {
+              setYear(e.target.value);
+            }}
+          >
+            <option>Select Year</option>
+            <option value="FY">First Year</option>
+            <option value="SY">Second Year</option>
+            <option value="TY">Third Year</option>
+            <option value="LY">Final Year</option>
+          </Form.Select>
+        </Form.Group>
+<br></br>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Date of Birth</Form.Label>
           <Form.Control

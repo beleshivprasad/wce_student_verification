@@ -9,7 +9,9 @@ import BootstrapSwitchButton from "bootstrap-switch-button-react";
 
 const TranscriptStatus = () => {
   const [prn, setPrn] = useState("");
+  const [year, setYear] = useState("");
   const [transcript, setTranscript] = useState([]);
+  const [request, setRequest] = useState("");
   const [error, setError] = useState(false);
   const [valid, setValid] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -63,11 +65,11 @@ const TranscriptStatus = () => {
       setLoading(true);
 
       const { data } = await axios.put(
-        `/transcript/approvetranscript/${prn}`,
+        `/transcript/approvetranscript/${prn}/${year}`,
         {},
         config
       );
-
+      console.log(year);
       console.log(data);
       setValid(data.status);
       setLoading(false);
@@ -100,6 +102,7 @@ const TranscriptStatus = () => {
             <th>Requested By</th>
             <th>Requested Student Name</th>
             <th>Requested Student PRN</th>
+            <th>Requested Year</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -109,20 +112,21 @@ const TranscriptStatus = () => {
             return (
               <tr>
                 <td>{index + 1}</td>
-                <td>{it.fname}</td>
-                <td>{it.lname}</td>
+                <td>{it.user}</td>
+                <td>{`${it.fname} ${it.lname}`}</td>
                 <td>{it.prn}</td>
+                <td>{it.year}</td>
                 <td>{it.status ? "Approved" : "Pending"}</td>
                 <td>
-                  {valid ? (
-                    <Button variant="success" disabled >
+                  {it.status ? (
+                    <Button variant="success" disabled>
                       Approved
                     </Button>
                   ) : (
                     <Button
                       onClick={() => {
+                        setYear(it.year);
                         approveTranscript();
-                        window.location.reload();
                       }}
                     >
                       Approve

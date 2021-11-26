@@ -1,23 +1,27 @@
 const asyncHandler = require("express-async-handler");
 const Transcript = require("../models/transcriptModel");
+const User = require("../models/userModel");
 
 const orderTranscript = asyncHandler(async (req, res) => {
-  const { fname, lname, prn, dob, cpi } = req.body;
+  const { fname, lname, prn, dob, cpi, year } = req.body;
   let isVerified = true;
-  if (!fname || !lname || !prn || !dob || !cpi) {
+  if (!fname || !lname || !prn || !dob || !cpi || !year) {
     res.status(400);
     throw new Error("All fields are required");
   } else {
-    const transcriptData = await Transcript.find({ prn });
+    const transcriptData = await Transcript.find({ prn, year });
     if (transcriptData.length !== 0) {
       res.status(400);
       throw new Error("Order Already Exists");
     } else {
+      const requestUser = await User.findOne({ _id: req.user._id });
+      console.log(requestUser);
       const transcript = new Transcript({
-        user: req.user._id,
+        user: `Name: ${requestUser.name}  Email: ${requestUser.email}`,
         fname,
         lname,
         prn,
+        year,
         dob,
         cpi,
       });
@@ -39,26 +43,31 @@ const viewTranscript = asyncHandler(async (req, res) => {
 
 const approveTranscript = asyncHandler(async (req, res) => {
   const prn = req.params.prn;
+  const year = req.params.year;
   console.log(prn);
-  if (!prn) {
+  if (!prn || !year) {
     res.status(400);
     throw new Error("Enter PRN");
   } else {
-    const updateData = await Transcript.updateOne({ prn }, { status: true });
-    const transcriptData = await Transcript.find({ prn });
+    const updateData = await Transcript.updateOne(
+      { prn, year },
+      { status: true }
+    );
+    const transcriptData = await Transcript.find({ prn, year });
+    console.log(transcriptData)
     res.status(201).json(transcriptData[0]);
   }
 });
 
 const deleteTranscript = asyncHandler(async (req, res) => {
   const prn = req.params.prn;
-  console.log(prn);
-  if (!prn) {
+  const year = req.params.year;
+  if (!prn || !year) {
     res.status(400);
     throw new Error("Enter PRN");
   } else {
-    const updateData = await Transcript.deleteOne({ prn });
-    const transcriptData = await Transcript.find({ prn });
+    const updateData = await Transcript.deleteOne({ prn, year });
+    const transcriptData = await Transcript.find({ prn, year });
     res.status(201).json(transcriptData);
   }
 });

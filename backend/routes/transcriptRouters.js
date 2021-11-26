@@ -10,7 +10,7 @@ const {
 
 router.route("/ordertranscript").post(protect, orderTranscript);
 router.route("/viewtranscript").post(protect, viewTranscript);
-router.route("/approvetranscript/:prn").put(protect, approveTranscript);
-router.route("/deletetranscript/:prn").post(protect, deleteTranscript);
+router.route("/approvetranscript/:prn/:year").put(protect, approveTranscript);
+router.route("/deletetranscript/:prn/:year").post(protect, deleteTranscript);
 
 module.exports = router;

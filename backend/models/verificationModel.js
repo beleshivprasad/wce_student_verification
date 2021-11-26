@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const transcriptSchema = mongoose.Schema(
+const verificationSchema = mongoose.Schema(
   {
     user: {
       type: String,
@@ -18,14 +18,6 @@ const transcriptSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    year: {
-      type: String,
-      required: true,
-    },
-    dob: {
-      type: Date,
-      required: true,
-    },
     cpi: {
       type: String,
       required: true,
@@ -41,6 +33,6 @@ const transcriptSchema = mongoose.Schema(
   }
 );
 
-const Transcript = mongoose.model("Transcript", transcriptSchema);
+const Verification = mongoose.model("Verification", verificationSchema);
 
-module.exports = Transcript;
+module.exports = Verification;

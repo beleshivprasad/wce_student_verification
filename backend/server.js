@@ -3,10 +3,13 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const userRouter = require("./routes/userRouters");
 const studentRouter = require("./routes/studentRouters");
-const transcriptRouter = require('./routes/transcriptRouters.js')
+const transcriptRouter = require("./routes/transcriptRouters.js");
+const verificationRouter = require("./routes/verificationRouters");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+const { getData } = require("../backend/controllers/verificationController");
 dotenv.config();
 
+getData();
 //creating app
 const app = express();
 
@@ -20,6 +23,7 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/student", studentRouter);
 app.use("/transcript", transcriptRouter);
+app.use("/verification", verificationRouter);
 
 app.use(notFound);
 app.use(errorHandler);

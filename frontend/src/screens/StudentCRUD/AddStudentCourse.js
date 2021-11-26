@@ -143,60 +143,80 @@ const AddStudentCourse = () => {
                   setCoursecode(e.target.value);
                 }}
               >
-                <option>Select Course Code</option>
-                <option value="4CH103">4CH103</option>
-                <option value="4MA101">4MA101</option>
-                <option value="4AM102">4AM102</option>
-                <option value="4CV101">4CV101</option>
-                <option value="4ME102">4ME102</option>
-                <option value="4BS101">4BS101</option>
-                <option value="4CH151">4CH151</option>
-                <option value="4CV151">4CV151</option>
-                <option value="4ME152">4ME152</option>
-                <option value="4PH103">4PH103</option>
-                <option value="4MA102">4MA102</option>
-                <option value="4ME101">4ME101</option>
-                <option value="4EL101">4EL101</option>
-                <option value="4EN101">4EN101</option>
-                <option value="4HS101">4HS101</option>
-                <option value="4PH151">4PH151</option>
-                <option value="4EN151">4EN151</option>
-                <option value="4CS153">4CS153</option>
-                <option value="4CS201">4CS201</option>
-                <option value="4CS202">4CS202</option>
-                <option value="4CS203">4CS203</option>
-                <option value="4CS204">4CS204</option>
-                <option value="4CS205">4CS205</option>
-                <option value="4HS203">4HS203</option>
-                <option value="4CS251">4CS251</option>
-                <option value="4CS252">4CS252</option>
-                <option value="4CS253">4CS253</option>
-                <option value="4HS201">4HS201</option>
-                <option value="4CS221">4CS221</option>
-                <option value="4CS222">4CS222</option>
-                <option value="4CS223">4CS223</option>
-                <option value="4CS224">4CS224</option>
-                <option value="4CS225">4CS225</option>
-                <option value="4CS271">4CS271</option>
-                <option value="4CS272">4CS272</option>
-                <option value="4CS273">4CS273</option>
-                <option value="4OE301">4OE301</option>
-                <option value="4HS307">4HS307</option>
-                <option value="4CS301">4CS301</option>
-                <option value="4CS302">4CS302</option>
-                <option value="4CS311">4CS311</option>
-                <option value="4CS351">4CS351</option>
-                <option value="4CS352">4CS352</option>
-                <option value="4CS353 ">4CS353 </option>
-                <option value="4CS354 ">4CS354</option>
-                <option value="4OE312">4OE312</option>
-                <option value="4HS313">4HS313</option>
-                <option value="4CS321">4CS321</option>
-                <option value="4CS322">4CS322</option>
-                <option value="4CS322">4CS322</option>
-                <option value="4CS323">4CS323</option>
-                <option value="4CS371">4CS371</option>
-                <option value="4CS341">4CS341</option>
+                {year == "FY" ? (
+                  <>
+                    <option>Select Course Code</option>
+                    <option value="4CH103">4CH103</option>
+                    <option value="4MA101">4MA101</option>
+                    <option value="4AM102">4AM102</option>
+                    <option value="4CV101">4CV101</option>
+                    <option value="4ME102">4ME102</option>
+                    <option value="4BS101">4BS101</option>
+                    <option value="4CH151">4CH151</option>
+                    <option value="4CV151">4CV151</option>
+                    <option value="4ME152">4ME152</option>
+                    <option value="4PH103">4PH103</option>
+                    <option value="4MA102">4MA102</option>
+                    <option value="4ME101">4ME101</option>
+                    <option value="4EL101">4EL101</option>
+                    <option value="4EN101">4EN101</option>
+                    <option value="4HS101">4HS101</option>
+                    <option value="4PH151">4PH151</option>
+                    <option value="4EN151">4EN151</option>
+                    <option value="4CS153">4CS153</option>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {year == "SY" ? (
+                  <>
+                    {" "}
+                    <option value="4CS201">4CS201</option>
+                    <option value="4CS202">4CS202</option>
+                    <option value="4CS203">4CS203</option>
+                    <option value="4CS204">4CS204</option>
+                    <option value="4CS205">4CS205</option>
+                    <option value="4HS203">4HS203</option>
+                    <option value="4CS251">4CS251</option>
+                    <option value="4CS252">4CS252</option>
+                    <option value="4CS253">4CS253</option>
+                    <option value="4HS201">4HS201</option>
+                    <option value="4CS221">4CS221</option>
+                    <option value="4CS222">4CS222</option>
+                    <option value="4CS223">4CS223</option>
+                    <option value="4CS224">4CS224</option>
+                    <option value="4CS225">4CS225</option>
+                    <option value="4CS271">4CS271</option>
+                    <option value="4CS272">4CS272</option>
+                    <option value="4CS273">4CS273</option>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {year == "TY" ? (
+                  <>
+                    {" "}
+                    <option value="4OE301">4OE301</option>
+                    <option value="4HS307">4HS307</option>
+                    <option value="4CS301">4CS301</option>
+                    <option value="4CS302">4CS302</option>
+                    <option value="4CS311">4CS311</option>
+                    <option value="4CS351">4CS351</option>
+                    <option value="4CS352">4CS352</option>
+                    <option value="4CS353 ">4CS353 </option>
+                    <option value="4CS354 ">4CS354</option>
+                    <option value="4OE312">4OE312</option>
+                    <option value="4HS313">4HS313</option>
+                    <option value="4CS321">4CS321</option>
+                    <option value="4CS322">4CS322</option>
+                    <option value="4CS322">4CS322</option>
+                    <option value="4CS323">4CS323</option>
+                    <option value="4CS371">4CS371</option>
+                    <option value="4CS341">4CS341</option>
+                  </>
+                ) : (
+                  <></>
+                )}
               </Form.Select>
             </Form.Group>
             <br></br>
@@ -209,145 +229,166 @@ const AddStudentCourse = () => {
                 }}
               >
                 <option>Select Course Name</option>
-                <option value="Chemistry for Computer Professionals">
-                  Chemistry for Computer Professionals
-                </option>
-                <option value="Engineering Mathematics I">
-                  Engineering Mathematics I
-                </option>
-                <option value="Introduction to Engineering Mechanics">
-                  Introduction to Engineering Mechanics
-                </option>
-                <option value="Basic Civil Engineering">
-                  Basic Civil Engineering
-                </option>
-                <option value="Engineering Graphics">
-                  Engineering Graphics
-                </option>
-                <option value="Elective on Basic Sciences">
-                  Elective on Basic Sciences
-                </option>
-                <option value="Engineering ChemistryLaboratory">
-                  Engineering ChemistryLaboratory
-                </option>
-                <option value="Civil and Mechanics Laboratory">
-                  Civil and Mechanics Laboratory
-                </option>
-                <option value="Workshop Practice">Workshop Practice</option>
-                <option value="Physics for Computer Professionals">
-                  Physics for Computer Professionals
-                </option>
-                <option value="Engineering Mathematics II">
-                  Engineering Mathematics II
-                </option>
-                <option value="Basic Mechanical Engineering">
-                  Basic Mechanical Engineering
-                </option>
-                <option value="Basic Electric Engineering">
-                  Basic Electric Engineering
-                </option>
-                <option value="Basic Electronics Engineering">
-                  Basic Electronics Engineering
-                </option>
-                <option value="English for Professional Communication">
-                  English for Professional Communication
-                </option>
-                <option value="Engineering Physics Laboratory">
-                  Engineering Physics Laboratory
-                </option>
-                <option value="Electronics Engineering Laboratory">
-                  Electronics Engineering Laboratory
-                </option>
-                <option value="Computer Programming">
-                  Computer Programming
-                </option>
-                <option value="Applied Mathematics for Computer Science and Engineering">
-                  Applied Mathematics for Computer Science and Engineering
-                </option>
-                <option value="Discrete Mathematics">
-                  Discrete Mathematics
-                </option>
-                <option value="Data Structures">Data Structures</option>
-                <option value="Data Communication">Data Communication</option>
-                <option value="Computer Organization and Architecture">
-                  Computer Organization and Architecture
-                </option>
-                <option value="Environmental Science">
-                  Environmental Science
-                </option>
-                <option value="Data Structures Laboratory">
-                  Data Structures Laboratory
-                </option>
-                <option value="Computer Organization and Architecture Lab">
-                  Computer Organization and Architecture Lab
-                </option>
-                <option value="Programming Laboratory 1">
-                  Programming Laboratory 1
-                </option>
-                <option value="Development of Societies/Philosophy">
-                  Development of Societies/Philosophy
-                </option>
-                <option value="Software Engineering">
-                  Software Engineering
-                </option>
-                <option value="Formal Language and Automata Theory">
-                  Formal Language and Automata Theory
-                </option>
-                <option value="Operating Systems">Operating Systems</option>
-                <option value="Database Engineering">
-                  Database Engineering
-                </option>
-                <option value="Computer Network">Computer Network</option>
-                <option value="Database Engineering Laboratory">
-                  Database Engineering Laboratory
-                </option>
-                <option value="Computer Network Laboratory">
-                  Computer Network Laboratory
-                </option>
-                <option value="Programming Laboratory 2">
-                  Programming Laboratory 2
-                </option>
-                <option value="Open Elective 1">Open Elective 1</option>
-                <option value="Fundamentals of Management and Economics for Engineers">
-                  Fundamentals of Management and Economics for Engineers
-                </option>
-                <option value="Compiler Design">Compiler Design</option>
-                <option value="Design and Analysis of Algorithms">
-                  Design and Analysis of Algorithms
-                </option>
-                <option value="Professional Elective 1">
-                  Professional Elective 1
-                </option>
-                <option value="Design and Analysis of Algorithms Laboratory">
-                  Design and Analysis of Algorithms Laboratory
-                </option>
-                <option value="Computer Graphics Laboratory">
-                  Computer Graphics Laboratory
-                </option>
-                <option value="Mini Project 1 ">Mini Project 1 </option>
-                <option value="Programming Laboratory 3 ">
-                  Programming Laboratory 3{" "}
-                </option>
-                <option value="Open Elective 2">Open Elective 2</option>
-                <option value="Elective Foundation Course in Humanities">
-                  Elective Foundation Course in Humanities
-                </option>
-                <option value="Distributed System and Cloud Computing">
-                  Distributed System and Cloud Computing
-                </option>
-                <option value="Advanced Database System">
-                  Advanced Database System
-                </option>
-                <option value="Professional Elective 2">
-                  Professional Elective 2
-                </option>
-                <option value="Professional Electives 1 Laboratory">
-                  Professional Electives 1 Laboratory
-                </option>
-                <option value="Advanced Database System Laboratory">
-                  Advanced Database System Laboratory
-                </option>
-                <option value="Mini Project 2">Mini Project 2</option>
+                {year == "FY" ? (
+                  <>
+                    <option value="Chemistry for Computer Professionals">
+                      Chemistry for Computer Professionals
+                    </option>
+                    <option value="Engineering Mathematics I">
+                      Engineering Mathematics I
+                    </option>
+                    <option value="Introduction to Engineering Mechanics">
+                      Introduction to Engineering Mechanics
+                    </option>
+                    <option value="Basic Civil Engineering">
+                      Basic Civil Engineering
+                    </option>
+                    <option value="Engineering Graphics">
+                      Engineering Graphics
+                    </option>
+                    <option value="Elective on Basic Sciences">
+                      Elective on Basic Sciences
+                    </option>
+                    <option value="Engineering ChemistryLaboratory">
+                      Engineering ChemistryLaboratory
+                    </option>
+                    <option value="Civil and Mechanics Laboratory">
+                      Civil and Mechanics Laboratory
+                    </option>
+                    <option value="Workshop Practice">Workshop Practice</option>
+                    <option value="Physics for Computer Professionals">
+                      Physics for Computer Professionals
+                    </option>
+                    <option value="Engineering Mathematics II">
+                      Engineering Mathematics II
+                    </option>
+                    <option value="Basic Mechanical Engineering">
+                      Basic Mechanical Engineering
+                    </option>
+                    <option value="Basic Electric Engineering">
+                      Basic Electric Engineering
+                    </option>
+                    <option value="Basic Electronics Engineering">
+                      Basic Electronics Engineering
+                    </option>
+                    <option value="English for Professional Communication">
+                      English for Professional Communication
+                    </option>
+                    <option value="Engineering Physics Laboratory">
+                      Engineering Physics Laboratory
+                    </option>
+                    <option value="Electronics Engineering Laboratory">
+                      Electronics Engineering Laboratory
+                    </option>
+                    <option value="Computer Programming">
+                      Computer Programming
+                    </option>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {year == "SY" ? (
+                  <>
+                    <option value="Applied Mathematics for Computer Science and Engineering">
+                      Applied Mathematics for Computer Science and Engineering
+                    </option>
+                    <option value="Discrete Mathematics">
+                      Discrete Mathematics
+                    </option>
+                    <option value="Data Structures">Data Structures</option>
+                    <option value="Data Communication">
+                      Data Communication
+                    </option>
+                    <option value="Computer Organization and Architecture">
+                      Computer Organization and Architecture
+                    </option>
+                    <option value="Environmental Science">
+                      Environmental Science
+                    </option>
+                    <option value="Data Structures Laboratory">
+                      Data Structures Laboratory
+                    </option>
+                    <option value="Computer Organization and Architecture Lab">
+                      Computer Organization and Architecture Lab
+                    </option>
+                    <option value="Programming Laboratory 1">
+                      Programming Laboratory 1
+                    </option>
+                    <option value="Development of Societies/Philosophy">
+                      Development of Societies/Philosophy
+                    </option>
+                    <option value="Software Engineering">
+                      Software Engineering
+                    </option>
+                    <option value="Formal Language and Automata Theory">
+                      Formal Language and Automata Theory
+                    </option>
+                    <option value="Operating Systems">Operating Systems</option>
+                    <option value="Database Engineering">
+                      Database Engineering
+                    </option>
+                    <option value="Computer Network">Computer Network</option>
+                    <option value="Database Engineering Laboratory">
+                      Database Engineering Laboratory
+                    </option>
+                    <option value="Computer Network Laboratory">
+                      Computer Network Laboratory
+                    </option>
+                    <option value="Programming Laboratory 2">
+                      Programming Laboratory 2
+                    </option>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {year == "TY" ? (
+                  <>
+                    <option value="Open Elective 1">Open Elective 1</option>
+                    <option value="Fundamentals of Management and Economics for Engineers">
+                      Fundamentals of Management and Economics for Engineers
+                    </option>
+                    <option value="Compiler Design">Compiler Design</option>
+                    <option value="Design and Analysis of Algorithms">
+                      Design and Analysis of Algorithms
+                    </option>
+                    <option value="Professional Elective 1">
+                      Professional Elective 1
+                    </option>
+                    <option value="Design and Analysis of Algorithms Laboratory">
+                      Design and Analysis of Algorithms Laboratory
+                    </option>
+                    <option value="Computer Graphics Laboratory">
+                      Computer Graphics Laboratory
+                    </option>
+                    <option value="Mini Project 1 ">Mini Project 1 </option>
+                    <option value="Programming Laboratory 3 ">
+                      Programming Laboratory 3{" "}
+                    </option>
+                    <option value="Open Elective 2">Open Elective 2</option>
+                    <option value="Elective Foundation Course in Humanities">
+                      Elective Foundation Course in Humanities
+                    </option>
+                    <option value="Distributed System and Cloud Computing">
+                      Distributed System and Cloud Computing
+                    </option>
+                    <option value="Advanced Database System">
+                      Advanced Database System
+                    </option>
+                    <option value="Professional Elective 2">
+                      Professional Elective 2
+                    </option>
+                    <option value="Professional Electives 1 Laboratory">
+                      Professional Electives 1 Laboratory
+                    </option>
+                    <option value="Advanced Database System Laboratory">
+                      Advanced Database System Laboratory
+                    </option>
+                    <option value="Mini Project 2">Mini Project 2</option>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {year == "LY" ? <></> : <></>}
               </Form.Select>
             </Form.Group>
             <br></br>
@@ -364,7 +405,6 @@ const AddStudentCourse = () => {
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-
               </Form.Select>
             </Form.Group>
             <br></br>

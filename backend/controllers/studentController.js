@@ -217,6 +217,7 @@ const checkStudent = asyncHandler(async (req, res) => {
     }
   }
 });
+
 const getCourse = asyncHandler(async (req, res) => {
   const { prn } = req.body;
   if (!prn) {
@@ -228,7 +229,7 @@ const getCourse = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error("Student Does not Exists");
     } else {
-      res.status(201).json(studentData[0].courseDetails);
+      res.status(201).json([studentData[0].courseDetails, studentData]);
     }
   }
 });

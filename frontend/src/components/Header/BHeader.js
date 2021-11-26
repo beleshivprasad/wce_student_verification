@@ -1,8 +1,6 @@
 import React from "react";
 import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const Header = () => {
   const userInfo = localStorage.getItem("userInfo");
@@ -26,11 +24,17 @@ const Header = () => {
                   id="collapsible-nav-dropdown"
                 >
                   <NavDropdown.Item>
-                    <Link to="/verify">Verify Diploma Information</Link>
+                    <Link to="/verify">Verify Degree </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link to="/verify">Verify Degree Information </Link>
+                    <Link to="/verificationhistory">Verification History </Link>
                   </NavDropdown.Item>
+                </NavDropdown>
+
+                <NavDropdown
+                  title="Transcript Services"
+                  id="collapsible-nav-dropdown"
+                >
                   <NavDropdown.Item>
                     <Link to="/order">Order Transcript </Link>
                   </NavDropdown.Item>

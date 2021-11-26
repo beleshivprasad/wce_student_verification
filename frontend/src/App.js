@@ -20,6 +20,7 @@ import DeleteStudent from "./screens/StudentCRUD/DeleteStudent";
 import TranscriptStatus from "./screens/TranscriptStatus/TranscriptStatus";
 import OrderStatus from "./screens/Order/OrderStatus";
 import DeleteCourse from "./screens/StudentCRUD/DeleteCourse";
+import VerificationStatus from "./screens/VerifyStudent/VerificationStatus";
 
 const App = () => {
   return (
@@ -32,6 +33,9 @@ const App = () => {
         </Route>
         <Route path="/verify" exact>
           <VerifyStudent></VerifyStudent>
+        </Route>
+        <Route path="/verificationhistory">
+          <VerificationStatus></VerificationStatus>
         </Route>
         <Route path="/order" exact>
           <Order></Order>
