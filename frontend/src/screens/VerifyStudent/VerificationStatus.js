@@ -7,7 +7,6 @@ import SuccessMessage from "../../components/SuccessMessage";
 import axios from "axios";
 
 const VerificationStatus = () => {
-  const [prn, setPrn] = useState("");
   const [verification, setVerification] = useState([]);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -56,8 +55,9 @@ const VerificationStatus = () => {
         <thead>
           <tr>
             <th>Sr. NO.</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            {userData.isAdmin ? <th>User</th> : <></>}
+            <th>Student First Name</th>
+            <th>Student Last Name</th>
             <th>PRN</th>
             <th>CPI</th>
             <th>Status</th>
@@ -68,6 +68,7 @@ const VerificationStatus = () => {
             return (
               <tr>
                 <td>{index + 1}</td>
+                {userData.isAdmin ? <td>{it.user}</td> : <></>}
                 <td>{it.fname}</td>
                 <td>{it.lname}</td>
                 <td>{it.prn}</td>

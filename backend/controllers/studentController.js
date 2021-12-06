@@ -222,7 +222,7 @@ const getCourse = asyncHandler(async (req, res) => {
   const { prn } = req.body;
   if (!prn) {
     res.status(400);
-    throw new Error("Enter PRN");
+    throw new Error("Error Getting PRN");
   } else {
     const studentData = await Student.find({ prn });
     if (studentData.length == 0) {

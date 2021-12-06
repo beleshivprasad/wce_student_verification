@@ -62,9 +62,19 @@ const Header = () => {
                 <Nav.Link>
                   <Link to="/">Home</Link>
                 </Nav.Link>
-                <Nav.Link>
-                  <Link to="/transcriptstatus">Transcript Status</Link>
-                </Nav.Link>
+                <Nav.Link></Nav.Link>
+                <NavDropdown
+                  title="Transcript and Verification"
+                  id="collapsible-nav-dropdown"
+                >
+                  <NavDropdown.Item>
+                    <Link to="/transcriptstatus">Transcript Status</Link>
+                  </NavDropdown.Item>
+
+                  <NavDropdown.Item>
+                    <Link to="/verificationhistory">Verification Status</Link>
+                  </NavDropdown.Item>
+                </NavDropdown>
                 <NavDropdown title="View Student" id="collapsible-nav-dropdown">
                   <NavDropdown.Item>
                     <Link to="/viewstudentlist">View Student Data</Link>

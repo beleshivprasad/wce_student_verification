@@ -130,7 +130,7 @@ const VerifyStudent = () => {
   };
 
   return (
-    <MainScreen title="Verify Student " student="Diploma">
+    <MainScreen title="Verify Student " student="Degree">
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
       {success && <SuccessMessage variant="success">{success}</SuccessMessage>}
       {loading && <Loading></Loading>}

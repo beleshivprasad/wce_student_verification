@@ -9,6 +9,8 @@ import jspdf from "jspdf";
 import "jspdf-autotable";
 
 const TranscriptStatus = () => {
+  const [str, setStr] = useState("");
+  const [str2, setStr2] = useState("");
   const [prn, setPrn] = useState("");
   const [year, setYear] = useState("");
   const [transcript, setTranscript] = useState([]);
@@ -41,8 +43,6 @@ const TranscriptStatus = () => {
           {},
           config
         );
-
-        setPrn(data[0].prn);
         setTranscript(data);
 
         setLoading(false);
@@ -52,6 +52,7 @@ const TranscriptStatus = () => {
         }, 3000);
       } catch (error) {
         setError(error.response.data.message);
+        setTranscript([]);
         setLoading(false);
         setTimeout(() => {
           setSuccess(false);
@@ -70,13 +71,14 @@ const TranscriptStatus = () => {
         },
       };
       setLoading(true);
+      console.log(str, "shiv");
 
       const { data } = await axios.post(
-        `/transcript/deletetranscript/${prn}/${year}`,
+        `/transcript/deletetranscript/${str}`,
         {},
         config
       );
-      if (data.length == 0) {
+      if (data.length === 0) {
         setSuccess("Order Canceled");
         setTranscript([]);
       }
@@ -97,112 +99,118 @@ const TranscriptStatus = () => {
 
   const downloadTranscript = async () => {
     try {
+      var p = str2.substring(0, 14);
+      var y = str2.substring(15, 18);
+      setPrn(p);
+      setYear(y);
+      console.log(prn, year);
       const config = {
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${userData.token}`,
         },
       };
-      console.log(prn);
+      setLoading(true);
       const { data } = await axios.post("/student/getcourse", { prn }, config);
-      let course = [];
-      let course_1 = [];
-      console.log(year);
-      data[0].forEach((item) => {
-        if (item.year === year) {
-          for (const [key, value] of Object.entries(item)) {
-            // console.log(`${value}`);
-            course_1.push(value);
+      setTimeout(() => {
+        let course = [];
+        let course_1 = [];
+        data[0].forEach((item) => {
+          if (item.year === year) {
+            for (const [key, value] of Object.entries(item)) {
+              // console.log(`${(key, value)}`);
+              course_1.push(value);
+            }
           }
-        }
-        // console.log("outside");
-        if (course_1.length !== 0) {
-          course.push(course_1);
-        }
-        course_1 = [];
-      });
-      var dsum = 0;
-      var nsum = 0;
-      var cpi = 0;
-      course.forEach((item) => {
-        switch (item[4]) {
-          case "AA":
-            nsum = nsum + 10 * item[3];
-            dsum = dsum + parseInt(item[3]);
-            console.log(nsum, dsum);
-            break;
-          case "AB":
-            nsum = nsum + 9 * item[3];
-            dsum = dsum + parseInt(item[3]);
-            console.log(nsum, dsum);
-            break;
-          case "BB":
-            nsum = nsum + 8 * item[3];
-            dsum = dsum + parseInt(item[3]);
-            console.log(nsum, dsum);
-            break;
-          case "BC":
-            nsum = nsum + 7 * item[3];
-            dsum = dsum + parseInt(item[3]);
-            console.log(nsum, dsum);
-            break;
-          case "CC":
-            nsum = nsum + 6 * item[3];
-            dsum = dsum + parseInt(item[3]);
-            console.log(nsum, dsum);
-            break;
-          case "CD":
-            nsum = nsum + 5 * item[3];
-            dsum = dsum + parseInt(item[3]);
-            console.log(nsum, dsum);
-            break;
-          case "DD":
-            nsum = nsum + 4 * item[3];
-            dsum = dsum + parseInt(item[3]);
-            console.log(nsum, dsum);
-            break;
-          case "FF":
-            nsum = nsum + 0 * item[3];
-            dsum = dsum + parseInt(item[3]);
-            console.log(nsum, dsum);
-            break;
-          default:
-            break;
-        }
-      });
-      cpi = nsum / dsum;
-      cpi = cpi.toFixed(2);
-      let cpi_data = ["", "", "", "CPI", `${cpi}`];
-      let temp = [];
-      course.push(temp);
-      course.push(cpi_data);
-      const doc = new jspdf();
-      doc.autoTable({
-        head: [
-          [
-            "Full Name : ",
-            `${data[1][0].fname} ${data[1][0].lname}`,
-            "PRN Number : ",
-            `${data[1][0].prn}`,
-            "",
+          // console.log("outside");
+          if (course_1.length !== 0) {
+            course.push(course_1);
+          }
+          course_1 = [];
+        });
+        var dsum = 0;
+        var nsum = 0;
+        var cpi = 0;
+        course.forEach((item) => {
+          switch (item[4]) {
+            case "AA":
+              nsum = nsum + 10 * item[3];
+              dsum = dsum + parseInt(item[3]);
+              console.log(nsum, dsum);
+              break;
+            case "AB":
+              nsum = nsum + 9 * item[3];
+              dsum = dsum + parseInt(item[3]);
+              console.log(nsum, dsum);
+              break;
+            case "BB":
+              nsum = nsum + 8 * item[3];
+              dsum = dsum + parseInt(item[3]);
+              console.log(nsum, dsum);
+              break;
+            case "BC":
+              nsum = nsum + 7 * item[3];
+              dsum = dsum + parseInt(item[3]);
+              console.log(nsum, dsum);
+              break;
+            case "CC":
+              nsum = nsum + 6 * item[3];
+              dsum = dsum + parseInt(item[3]);
+              console.log(nsum, dsum);
+              break;
+            case "CD":
+              nsum = nsum + 5 * item[3];
+              dsum = dsum + parseInt(item[3]);
+              console.log(nsum, dsum);
+              break;
+            case "DD":
+              nsum = nsum + 4 * item[3];
+              dsum = dsum + parseInt(item[3]);
+              console.log(nsum, dsum);
+              break;
+            case "FF":
+              nsum = nsum + 0 * item[3];
+              dsum = dsum + parseInt(item[3]);
+              console.log(nsum, dsum);
+              break;
+            default:
+              break;
+          }
+        });
+        cpi = nsum / dsum;
+        cpi = cpi.toFixed(2);
+        let cpi_data = ["", "", "", "CPI", `${cpi}`];
+        let temp = [];
+        course.push(temp);
+        course.push(cpi_data);
+        const doc = new jspdf();
+        doc.autoTable({
+          head: [
+            [
+              "Full Name : ",
+              `${data[1][0].fname} ${data[1][0].lname}`,
+              "PRN Number : ",
+              `${prn}`,
+              "",
+            ],
+            [
+              "Branch : ",
+              `${data[1][0].branch}`,
+              "Programme : ",
+              "Bachelor of Technology",
+              "",
+            ],
+            ["Year", "Course Name", "Course Code", "Credit", "Grade"],
           ],
-          [
-            "Branch : ",
-            `${data[1][0].branch}`,
-            "Programme : ",
-            "Bachelor of Technology",
-            "",
-          ],
-          ["Year", "Course Name", "Course Code", "Credit", "Grade"],
-        ],
-        body: course,
-      });
-      doc.save("table.pdf");
+          body: course,
+        });
+        doc.save("table.pdf");
+        setLoading(false);
+      }, 2000);
 
       // console.log(data[0][0]);->course ->first course
       // console.log(data[1][0]); ->student->get first array with details like name
 
-      setLoading(false);
       setTimeout(() => {
         setSuccess(false);
         setError(false);
@@ -249,18 +257,27 @@ const TranscriptStatus = () => {
                 <td>
                   {it.status ? (
                     <Button
-                      onClick={() => {
-                        setYear(it.year);
-                        downloadTranscript();
+                      value={`${it.prn}/${it.year}`}
+                      onClick={(e) => {
+                        setStr2(e.target.value);
+                        setTimeout(() => {
+                          downloadTranscript();
+                          setLoading(false);
+                        }, 1000);
                       }}
                     >
                       Download
                     </Button>
                   ) : (
                     <Button
-                      onClick={() => {
-                        setYear(it.year);
-                        deleteTranscript();
+                      value={`${it.prn}/${it.year}`}
+                      onClick={(e) => {
+                        setLoading(true);
+                        setStr(e.target.value);
+                        setTimeout(() => {
+                          deleteTranscript();
+                          setLoading(false);
+                        }, 100);
                       }}
                     >
                       Cancel Request

@@ -47,14 +47,14 @@ const approveTranscript = asyncHandler(async (req, res) => {
   console.log(prn);
   if (!prn || !year) {
     res.status(400);
-    throw new Error("Enter PRN");
+    throw new Error("Error Getting PRN");
   } else {
     const updateData = await Transcript.updateOne(
       { prn, year },
       { status: true }
     );
     const transcriptData = await Transcript.find({ prn, year });
-    console.log(transcriptData)
+    console.log(transcriptData);
     res.status(201).json(transcriptData[0]);
   }
 });
@@ -62,9 +62,10 @@ const approveTranscript = asyncHandler(async (req, res) => {
 const deleteTranscript = asyncHandler(async (req, res) => {
   const prn = req.params.prn;
   const year = req.params.year;
+  console.log(prn, year);
   if (!prn || !year) {
     res.status(400);
-    throw new Error("Enter PRN");
+    throw new Error("Enter Getting PRN");
   } else {
     const updateData = await Transcript.deleteOne({ prn, year });
     const transcriptData = await Transcript.find({ prn, year });

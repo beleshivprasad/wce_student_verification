@@ -5,9 +5,9 @@ import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/errorMessage";
 import SuccessMessage from "../../components/SuccessMessage";
 import axios from "axios";
-import BootstrapSwitchButton from "bootstrap-switch-button-react";
 
 const TranscriptStatus = () => {
+  const [str, setStr] = useState("");
   const [prn, setPrn] = useState("");
   const [year, setYear] = useState("");
   const [transcript, setTranscript] = useState([]);
@@ -46,6 +46,7 @@ const TranscriptStatus = () => {
       }, 3000);
     } catch (error) {
       setError(error.response.data.message);
+      setTranscript([]);
       setLoading(false);
       setTimeout(() => {
         setSuccess(false);
@@ -65,7 +66,7 @@ const TranscriptStatus = () => {
       setLoading(true);
 
       const { data } = await axios.put(
-        `/transcript/approvetranscript/${prn}/${year}`,
+        `/transcript/approvetranscript/${str}`,
         {},
         config
       );
@@ -124,8 +125,9 @@ const TranscriptStatus = () => {
                     </Button>
                   ) : (
                     <Button
-                      onClick={() => {
-                        setYear(it.year);
+                      value={`${it.prn}/${it.year}`}
+                      onClick={(e) => {
+                        setStr(e.target.value);
                         approveTranscript();
                       }}
                     >
